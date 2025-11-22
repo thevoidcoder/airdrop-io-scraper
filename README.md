@@ -82,10 +82,13 @@ The scraper will:
 5. **Detect Changes** - Compares new data with previous data to find:
    - New airdrops (not seen before)
    - Updated airdrops (existing but with changes)
+   - **First Run**: If no previous data exists, ALL airdrops are sent to Telegram
 6. **Save Results** - Saves all data to `airdrops.json`
 7. **Send to Telegram** - If changes detected:
-   - Sends **only new** airdrops to Hot and Latest topics
-   - Sends **all** airdrops (new + updated) to Updated topic
+   - **First Run**: Sends ALL airdrops to all topics (~589 airdrops)
+   - **Subsequent Runs**:
+     - Sends **only new** airdrops to Hot and Latest topics
+     - Sends **all** airdrops (new + updated) to Updated topic
    - Sends summary reports to each topic
 
 The scraper uses:

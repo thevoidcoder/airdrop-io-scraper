@@ -34,8 +34,14 @@ npm start
 
 ## 📊 What Happens?
 
-1. **First Run**: All ~589 airdrops sent to Telegram
-2. **Subsequent Runs**: Only new/changed airdrops sent
+1. **First Run** (no previous data): All ~589 airdrops sent to Telegram
+   - Hot topic: All hot airdrops (~288)
+   - Latest topic: All latest airdrops (~288)
+   - Updated topic: All updated airdrops (~13)
+2. **Subsequent Runs** (with previous data): Only new/changed airdrops sent
+   - Hot topic: Only NEW hot airdrops
+   - Latest topic: Only NEW latest airdrops
+   - Updated topic: ALL (new + changed) airdrops
 
 ## 🎯 Smart Notifications
 

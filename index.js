@@ -410,7 +410,11 @@ async function scrapeAirdrops() {
     
     // Send to Telegram if there are any changes
     if (report.grandTotal > 0) {
-      console.log('\n📢 Changes detected! Sending to Telegram...');
+      if (changes.isFirstRun) {
+        console.log('\n📢 First run - sending all airdrops to Telegram...');
+      } else {
+        console.log('\n📢 Changes detected! Sending to Telegram...');
+      }
       await sendToTelegram(changes);
     } else {
       console.log('\n✅ No changes detected. Skipping Telegram notifications.');

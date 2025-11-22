@@ -72,11 +72,13 @@ function detectChanges(oldData, newData) {
     updated: { new: [], updated: [] }
   };
   
-  // If no old data, everything is new
+  // If no old data, everything is new (first run)
   if (!oldData) {
+    console.log('ℹ️  First run detected - all airdrops will be marked as new');
     changes.hot.new = newData.sections.hottest.airdrops;
     changes.latest.new = newData.sections.latest.airdrops;
     changes.updated.new = newData.sections.updated.airdrops;
+    changes.isFirstRun = true;
     return changes;
   }
   
