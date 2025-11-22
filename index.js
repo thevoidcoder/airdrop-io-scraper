@@ -276,11 +276,11 @@ async function sendToTelegram(changes) {
       throw new Error('Failed to connect to Telegram bot');
     }
     
-    // Send hot airdrops (only new ones)
+    // Send hot airdrops (only new ones) - reversed so latest appear last
     if (changes.hot.new.length > 0) {
       console.log(`\n🔥 Sending ${changes.hot.new.length} new hot airdrops...`);
       const result = await telegramBot.sendAirdropsBatch(
-        changes.hot.new,
+        changes.hot.new.slice().reverse(),
         telegramBot.TOPICS.hot,
         true,
         2000 // 2 second delay
@@ -288,11 +288,11 @@ async function sendToTelegram(changes) {
       console.log(`   ✓ Sent: ${result.sent}, Failed: ${result.failed}`);
     }
     
-    // Send latest airdrops (only new ones)
+    // Send latest airdrops (only new ones) - reversed so latest appear last
     if (changes.latest.new.length > 0) {
       console.log(`\n⚡ Sending ${changes.latest.new.length} new latest airdrops...`);
       const result = await telegramBot.sendAirdropsBatch(
-        changes.latest.new,
+        changes.latest.new.slice().reverse(),
         telegramBot.TOPICS.latest,
         true,
         2000 // 2 second delay
@@ -300,12 +300,12 @@ async function sendToTelegram(changes) {
       console.log(`   ✓ Sent: ${result.sent}, Failed: ${result.failed}`);
     }
     
-    // Send updated airdrops (all - both new and updated)
+    // Send updated airdrops (all - both new and updated) - reversed so latest appear last
     const allUpdated = [...changes.updated.new, ...changes.updated.updated];
     if (allUpdated.length > 0) {
       console.log(`\n🔄 Sending ${allUpdated.length} updated airdrops...`);
       const result = await telegramBot.sendAirdropsBatch(
-        allUpdated,
+        allUpdated.reverse(),
         telegramBot.TOPICS.updated,
         false,
         2000 // 2 second delay
