@@ -1,0 +1,10 @@
+node_modules/
+airdrops.json
+*.log
+.DS_Store
+
+# Environment variables
+.env
+
+# Test files
+source-*.html
